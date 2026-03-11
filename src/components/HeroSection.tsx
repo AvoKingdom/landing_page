@@ -35,7 +35,7 @@ const HeroSection = () => {
         <h1 className="font-heading font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight max-w-4xl mx-auto mb-6">
           ¿Cuánto te están pagando a ti...
           <br />
-          <span className="text-primary">y cuánto le pagan al de junto?</span>
+          <span className="text-primary">y cuánto le pagan al de al lado?</span>
         </h1>
 
         <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -45,14 +45,14 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
           <a
             href="#planes"
-            className="bg-primary text-primary-foreground font-heading font-bold text-base px-8 py-3.5 rounded-full hover:brightness-110 transition-all shadow-lg shadow-primary/20"
-          >
+            className="bg-primary text-primary-foreground font-heading font-bold text-base px-8 py-3.5 rounded-full hover:brightness-110 transition-all shadow-lg shadow-primary/20">
+            
             Regístrate gratis
           </a>
           <a
             href="#solucion"
-            className="border border-foreground/30 text-foreground font-heading font-medium text-base px-8 py-3.5 rounded-full hover:bg-foreground/5 transition-all"
-          >
+            className="border border-foreground/30 text-foreground font-heading font-medium text-base px-8 py-3.5 rounded-full hover:bg-foreground/5 transition-all">
+            
             Ver empacadoras →
           </a>
         </div>
@@ -70,8 +70,8 @@ const HeroSection = () => {
           </svg>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default HeroSection;
