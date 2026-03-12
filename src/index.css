@@ -97,23 +97,6 @@
   }
 }
 
-/* Floating numbers background animation */
-@keyframes float-up {
-  0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-  10% { opacity: 0.07; }
-  90% { opacity: 0.07; }
-  100% { transform: translateY(-100px) translateX(20px); opacity: 0; }
-}
-
-.floating-number {
-  position: absolute;
-  font-family: 'Space Grotesk', monospace;
-  color: hsl(73 100% 50%);
-  opacity: 0;
-  animation: float-up linear infinite;
-  pointer-events: none;
-  user-select: none;
-}
 
 /* Scrollbar */
 ::-webkit-scrollbar {
