@@ -35,10 +35,10 @@ ahora en sus manos.
               Regístrate gratis
             </a>
             <a
-              href="#solucion"
-              className="border border-foreground/30 text-foreground font-heading font-medium text-base px-8 py-3.5 rounded-full hover:bg-foreground/5 transition-all">
+
+              className="border border-foreground/30 text-foreground font-heading font-medium text-base px-8 py-3.5 rounded-full hover:bg-foreground/5 transition-all" href="#planes">
               
-              Ver empacadoras →
+              Ver planes →
             </a>
           </div>
         </div>
