@@ -15,10 +15,8 @@ const HeroSection = () => {
       {/* Content */}
       <div className="container relative z-10 pb-20 pt-32">
         <div className="max-w-2xl">
-          <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">La información que se movía a sus espaldas,  
-ahora en sus manos.
-            <br />
-            el mejor aguacate del mundo
+          <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+            La información que se movía a sus espaldas,
             <br />
             <span className="text-primary">ahora en sus manos.</span>
           </h1>
