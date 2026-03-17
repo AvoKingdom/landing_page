@@ -36,7 +36,7 @@ const HeroSection = () => {
 
               className="border border-foreground/30 text-foreground font-heading font-medium text-base px-8 py-3.5 rounded-full hover:bg-foreground/5 transition-all" href="#planes">
               
-              Ver planes →
+              Ver planes
             </a>
           </div>
         </div>

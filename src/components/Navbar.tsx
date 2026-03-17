@@ -89,9 +89,16 @@ const Navbar = () => {
           <a
             href="#planes"
             onClick={() => setMobileOpen(false)}
+            className="block text-foreground text-lg font-medium"
+          >
+            Iniciar Sesión
+          </a>
+          <a
+            href="#planes"
+            onClick={() => setMobileOpen(false)}
             className="inline-flex items-center gap-1 bg-primary text-primary-foreground font-heading font-semibold text-sm px-5 py-2.5 rounded-full"
           >
-            Entrar a la app →
+            Crear cuenta →
           </a>
         </div>
       )}

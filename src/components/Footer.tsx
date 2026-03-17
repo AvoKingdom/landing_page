@@ -39,9 +39,8 @@ const Footer = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Logo */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-1.5 mb-3">
-              <span className="text-2xl">🥑</span>
-              <span className="font-heading font-bold text-lg text-foreground">AvoKingdom</span>
+            <div className="mb-3">
+              <img src="/images/AVK_LOGO.webp" alt="AvoKingdom" className="h-9" />
             </div>
             <p className="text-muted-foreground text-sm italic">La unión hace la fuerza</p>
           </div>
