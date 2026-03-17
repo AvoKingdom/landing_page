@@ -45,12 +45,17 @@ const Navbar = () => {
         </div>
 
         {/* CTA */}
-        <a
-          href="#planes"
-          className="hidden md:inline-flex items-center gap-1 bg-primary text-primary-foreground font-heading font-semibold text-sm px-5 py-2.5 rounded-full hover:brightness-110 transition-all"
-        >
-          Entrar a la app <span className="ml-1">→</span>
-        </a>
+        <div className="hidden md:flex items-center gap-4">
+          <a href="#planes" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            Iniciar Sesión
+          </a>
+          <a
+            href="#planes"
+            className="inline-flex items-center gap-1 bg-primary text-primary-foreground font-heading font-semibold text-sm px-5 py-2.5 rounded-full hover:brightness-110 transition-all"
+          >
+            Crear cuenta <span className="ml-1">→</span>
+          </a>
+        </div>
 
         {/* Mobile toggle */}
         <button
