@@ -27,10 +27,8 @@ const Navbar = () => {
     >
       <div className="container flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-1.5">
-          <span className="text-2xl">🥑</span>
-          <span className="font-heading font-bold text-lg text-foreground">AvoKingdom</span>
-          <span className="font-script text-primary text-xl -ml-0.5">Solutions</span>
+        <a href="#">
+          <img src="/images/AVK_LOGO.webp" alt="AvoKingdom" className="h-9" />
         </a>
 
         {/* Desktop links */}
@@ -47,12 +45,17 @@ const Navbar = () => {
         </div>
 
         {/* CTA */}
-        <a
-          href="#planes"
-          className="hidden md:inline-flex items-center gap-1 bg-primary text-primary-foreground font-heading font-semibold text-sm px-5 py-2.5 rounded-full hover:brightness-110 transition-all"
-        >
-          Entrar a la app <span className="ml-1">→</span>
-        </a>
+        <div className="hidden md:flex items-center gap-4">
+          <a href="#planes" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            Iniciar Sesión
+          </a>
+          <a
+            href="#planes"
+            className="inline-flex items-center gap-1 bg-primary text-primary-foreground font-heading font-semibold text-sm px-5 py-2.5 rounded-full hover:brightness-110 transition-all"
+          >
+            Crear cuenta <span className="ml-1">→</span>
+          </a>
+        </div>
 
         {/* Mobile toggle */}
         <button
@@ -86,9 +89,16 @@ const Navbar = () => {
           <a
             href="#planes"
             onClick={() => setMobileOpen(false)}
+            className="block text-foreground text-lg font-medium"
+          >
+            Iniciar Sesión
+          </a>
+          <a
+            href="#planes"
+            onClick={() => setMobileOpen(false)}
             className="inline-flex items-center gap-1 bg-primary text-primary-foreground font-heading font-semibold text-sm px-5 py-2.5 rounded-full"
           >
-            Entrar a la app →
+            Crear cuenta →
           </a>
         </div>
       )}
