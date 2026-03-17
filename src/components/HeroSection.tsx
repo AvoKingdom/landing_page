@@ -30,7 +30,7 @@ const HeroSection = () => {
               href="#planes"
               className="bg-primary text-primary-foreground font-heading font-bold text-base px-8 py-3.5 rounded-full hover:brightness-110 transition-all shadow-lg shadow-primary/20">
               
-              Regístrate gratis
+              Comenzar gratis →
             </a>
             <a
 
