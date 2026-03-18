@@ -92,6 +92,14 @@
     border-color: hsl(73 100% 50% / 0.3);
   }
 
+  .glass-card-glow-bottom {
+    @apply glass-card transition-all duration-300;
+  }
+  .glass-card-glow-bottom:hover {
+    box-shadow: 0 8px 30px hsl(73 100% 50% / 0.15);
+    border-bottom-color: hsl(73 100% 50% / 0.4);
+  }
+
   .text-gradient-primary {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
   }
