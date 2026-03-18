@@ -3,17 +3,17 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const problems = [
   {
-    icon: "👁️‍🗨️",
+    image: "/images/Precio.webp",
     title: "No sabes qué precio ofrece la empacadora de al lado",
     body: "Sin información, negocias desde la debilidad. El que sabe más, siempre gana.",
   },
   {
-    icon: "🤝",
+    image: "/images/Mercado.webp",
     title: "Los intermediarios conocen el mercado mejor que tú",
     body: "Ellos tienen los datos. Tú tienes la fruta. Eso tiene que cambiar.",
   },
   {
-    icon: "⏱️",
+    image: "/images/Tiempo.webp",
     title: "Cuando quieres comparar, ya es tarde",
     body: "Los precios cambian cada semana. Decidir sin información actualizada te cuesta dinero.",
   },
@@ -37,14 +37,23 @@ const ProblemSection = () => {
           {problems.map((p, i) => (
             <div
               key={i}
-              className={`glass-card-glow p-8 border-l-4 border-l-primary transition-all duration-700 ${
+              className={`glass-card-glow-bottom overflow-hidden transition-all duration-700 ${
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 150}ms` }}
             >
-              <div className="text-4xl mb-4">{p.icon}</div>
-              <h3 className="font-heading font-bold text-lg mb-3 text-foreground">{p.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{p.body}</p>
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-card to-transparent" />
+              </div>
+              <div className="p-6 pt-4">
+                <h3 className="font-heading font-bold text-lg mb-3 text-foreground">{p.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{p.body}</p>
+              </div>
             </div>
           ))}
         </div>
