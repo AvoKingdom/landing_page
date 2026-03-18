@@ -6,6 +6,7 @@ const problems = [
     image: "/images/Precio.webp",
     title: "No sabes qué precio ofrece la empacadora de al lado",
     body: "Sin información, negocias desde la debilidad. El que sabe más, siempre gana.",
+    objectPosition: "center 70%",
   },
   {
     image: "/images/Mercado.webp",
@@ -47,6 +48,7 @@ const ProblemSection = () => {
                   src={p.image}
                   alt={p.title}
                   className="w-full h-full object-cover"
+                  style={{ objectPosition: p.objectPosition || 'center' }}
                 />
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-card to-transparent" />
               </div>
