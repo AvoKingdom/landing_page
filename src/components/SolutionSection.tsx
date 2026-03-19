@@ -114,30 +114,50 @@ const SolutionSection = () => {
         >
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left — mockup */}
-            <div className="bg-background rounded-2xl p-4 space-y-3">
-              <div className="flex gap-2 mb-4">
-                {["Conv.", "Orgánica", "Local"].map((t) => (
-                  <span
-                    key={t}
-                    className="bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1.5 rounded-full"
+            {active === 0 ? (
+              <video
+                autoPlay
+                muted
+                playsInline
+                loop
+                poster="https://res.cloudinary.com/dutbzgehz/video/upload/so_0,q_auto,f_auto/v1773956215/Ranking_de_Precios_cq3mxw.jpg"
+                className="w-full rounded-2xl"
+              >
+                <source
+                  src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_webm/v1773956215/Ranking_de_Precios_cq3mxw.mp4"
+                  type="video/webm"
+                />
+                <source
+                  src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_mp4/v1773956215/Ranking_de_Precios_cq3mxw.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            ) : (
+              <div className="bg-background rounded-2xl p-4 space-y-3">
+                <div className="flex gap-2 mb-4">
+                  {["Conv.", "Orgánica", "Local"].map((t) => (
+                    <span
+                      key={t}
+                      className="bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1.5 rounded-full"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                {f.mockupRows.map((e, i) => (
+                  <div
+                    key={`${active}-${i}`}
+                    className="flex items-center justify-between p-3 rounded-lg bg-card border border-border"
                   >
-                    {t}
-                  </span>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">{e.name}</p>
+                      <p className="text-xs text-muted-foreground">{e.gram}</p>
+                    </div>
+                    <span className="text-primary font-heading font-bold">{e.price}</span>
+                  </div>
                 ))}
               </div>
-              {f.mockupRows.map((e, i) => (
-                <div
-                  key={`${active}-${i}`}
-                  className="flex items-center justify-between p-3 rounded-lg bg-card border border-border"
-                >
-                  <div>
-                    <p className="text-sm font-medium text-foreground">{e.name}</p>
-                    <p className="text-xs text-muted-foreground">{e.gram}</p>
-                  </div>
-                  <span className="text-primary font-heading font-bold">{e.price}</span>
-                </div>
-              ))}
-            </div>
+            )}
 
             {/* Right — info */}
             <div>
