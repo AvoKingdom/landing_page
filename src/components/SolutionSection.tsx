@@ -99,7 +99,7 @@ const SolutionSection = () => {
               } ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <div className="w-12 h-12 mb-2">{featureIcons[i](tabHovered === i || active === i)}</div>
+              <div className="w-16 h-16 md:w-20 md:h-20 mb-3">{featureIcons[i](tabHovered === i || active === i)}</div>
               <span className="font-heading font-bold text-sm text-foreground">{feat.title}</span>
             </button>
           ))}
