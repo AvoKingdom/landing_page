@@ -75,6 +75,7 @@ const SolutionSection = () => {
   return (
     <section id="solucion" className="py-24 md:py-32 grain" ref={ref}>
       <div className="container">
+        <FeatureCardKeyframes />
         <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-4">
           La Solución
         </p>
@@ -88,6 +89,8 @@ const SolutionSection = () => {
             <button
               key={i}
               onClick={() => setActive(i)}
+              onMouseEnter={() => setTabHovered(i)}
+              onMouseLeave={() => setTabHovered(null)}
               className={`glass-card p-4 md:p-5 text-left cursor-pointer transition-all duration-300 ${
                 active === i
                   ? "border-primary bg-primary/5 shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
@@ -95,7 +98,7 @@ const SolutionSection = () => {
               } ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <span className="text-2xl block mb-2">{feat.icon}</span>
+              <div className="w-12 h-12 mb-2">{featureIcons[i](tabHovered === i || active === i)}</div>
               <span className="font-heading font-bold text-sm text-foreground">{feat.title}</span>
             </button>
           ))}
