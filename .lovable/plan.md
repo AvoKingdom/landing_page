@@ -1,29 +1,16 @@
 
 
-## Crear componente FeatureCards.tsx con iconos SVG animados
+## Agregar video de Ranking de Precios en SolutionSection
 
-### Contexto
-El código pegado perdió todas las etiquetas JSX (fueron interpretadas como HTML). Reconstruiré el componente completo basándome en la estructura visible del código y la imagen de referencia.
+### Cambio
 
-### Archivo: `src/components/FeatureCards.tsx`
+Reemplazar el mockup estático (las filas con datos) del primer tab ("Ranking de precios", `active === 0`) por el video de Cloudinary. Los demás tabs conservan su mockup actual.
 
-Componente con 4 cards animadas con SVG icons:
-1. **Ranking de precios** — Barras de gráfico que crecen en hover + etiqueta "$24.10"
-2. **Búsqueda por región** — Radar con sweep rotativo, ping rings y blips
-3. **Hecho para el campo** — Barras de señal que crecen + ping animado
-4. **Datos frescos** — Calendario con flecha refresh que gira en hover
+### En `src/components/SolutionSection.tsx`
 
-Cada card:
-- Fondo `#1a1a1a`, borde `#2a2a2a`, rounded-2xl
-- Hover: borde primary (`#c8f135`), translate-y -1, glow verde
-- SVG animado dentro, título debajo
-- Keyframes globales inyectados via `<style>` tag
+En el panel izquierdo (líneas ~117-141), envolver el contenido en una condición:
+- Si `active === 0`: renderizar el `<video>` con autoPlay, muted, playsInline, loop, poster de Cloudinary, sources WebM y MP4
+- Si `active !== 0`: renderizar el mockup actual (badges + mockupRows)
 
-### Integración con SolutionSection
-- Reemplazar los emojis en los tabs por el componente `FeatureCards` o sus iconos SVG individuales
-- Los tabs actuales en `SolutionSection.tsx` usarán los SVGs en lugar de `feat.icon` (emoji)
-
-### Plan
-1. Crear `src/components/FeatureCards.tsx` con el componente completo (cards + SVGs animados + keyframes)
-2. Actualizar `SolutionSection.tsx` para importar y usar los iconos SVG de FeatureCards en los tabs, reemplazando los emojis
+El video usa `className="w-full rounded-2xl"` y se ajusta al contenedor existente.
 
