@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Check } from "lucide-react";
+import { featureIcons, FeatureCardKeyframes } from "@/components/FeatureCards";
 
 const features = [
   {
