@@ -1,16 +1,20 @@
 
 
-## Agregar video de Ranking de Precios en SolutionSection
+## Agregar imagen y video a tabs "Hecho para el campo" y "Datos frescos"
 
-### Cambio
+### Cambios en `src/components/SolutionSection.tsx`
 
-Reemplazar el mockup estático (las filas con datos) del primer tab ("Ranking de precios", `active === 0`) por el video de Cloudinary. Los demás tabs conservan su mockup actual.
+Expandir la lógica condicional del panel izquierdo (líneas 117-160) de 2 casos a 4:
 
-### En `src/components/SolutionSection.tsx`
+- **`active === 0`** (Ranking de precios): video actual de Cloudinary — sin cambios
+- **`active === 1`** (Búsqueda por región): mockup actual con badges + rows — sin cambios
+- **`active === 2`** (Hecho para el campo): mostrar la imagen subida (`APP_AVK.webp`) importada desde `src/assets/`, con `className="w-full rounded-2xl"`
+- **`active === 3`** (Datos frescos): video de Cloudinary con autoPlay, muted, playsInline, loop, poster y sources WebM/MP4 del URL proporcionado
 
-En el panel izquierdo (líneas ~117-141), envolver el contenido en una condición:
-- Si `active === 0`: renderizar el `<video>` con autoPlay, muted, playsInline, loop, poster de Cloudinary, sources WebM y MP4
-- Si `active !== 0`: renderizar el mockup actual (badges + mockupRows)
+### Archivos
 
-El video usa `className="w-full rounded-2xl"` y se ajusta al contenedor existente.
+1. **Copiar imagen** `user-uploads://APP_AVK.webp` → `src/assets/APP_AVK.webp`
+2. **Editar** `src/components/SolutionSection.tsx`:
+   - Importar la imagen: `import appAvkImage from "@/assets/APP_AVK.webp"`
+   - Reemplazar el bloque condicional `active === 0 ? ... : ...` por un bloque con 4 condiciones usando un helper o ternarios anidados
 
