@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Check } from "lucide-react";
 import { featureIcons, FeatureCardKeyframes } from "@/components/FeatureCards";
+import appAvkImage from "@/assets/APP_AVK.webp";
 
 const features = [
   {
