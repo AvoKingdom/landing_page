@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Check } from "lucide-react";
 import { featureIcons, FeatureCardKeyframes } from "@/components/FeatureCards";
+import appAvkImage from "@/assets/APP_AVK.webp";
 
 const features = [
   {
@@ -129,6 +130,30 @@ const SolutionSection = () => {
                 />
                 <source
                   src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_mp4/v1773956215/Ranking_de_Precios_cq3mxw.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            ) : active === 2 ? (
+              <img
+                src={appAvkImage}
+                alt="AvoKingdom app - Hecho para el campo"
+                className="w-full rounded-2xl"
+              />
+            ) : active === 3 ? (
+              <video
+                autoPlay
+                muted
+                playsInline
+                loop
+                poster="https://res.cloudinary.com/dutbzgehz/video/upload/so_0,q_auto,f_auto/v1773960264/1106552_1080p_4k_1280x720_u2anok.jpg"
+                className="w-full rounded-2xl"
+              >
+                <source
+                  src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_webm/v1773960264/1106552_1080p_4k_1280x720_u2anok.mp4"
+                  type="video/webm"
+                />
+                <source
+                  src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_mp4/v1773960264/1106552_1080p_4k_1280x720_u2anok.mp4"
                   type="video/mp4"
                 />
               </video>
