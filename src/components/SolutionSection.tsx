@@ -70,6 +70,7 @@ const SolutionSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const visible = useScrollAnimation(ref);
   const [active, setActive] = useState(0);
+  const [tabHovered, setTabHovered] = useState<number | null>(null);
   const f = features[active];
 
   return (
