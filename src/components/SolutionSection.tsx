@@ -113,76 +113,78 @@ const SolutionSection = () => {
           }`}
           style={{ transitionDelay: "400ms" }}
         >
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Left — mockup */}
-            {active === 0 ? (
-              <video
-                autoPlay
-                muted
-                playsInline
-                loop
-                poster="https://res.cloudinary.com/dutbzgehz/video/upload/so_0,q_auto,f_auto/v1773956215/Ranking_de_Precios_cq3mxw.jpg"
-                className="w-full rounded-2xl"
-              >
-                <source
-                  src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_webm/v1773956215/Ranking_de_Precios_cq3mxw.mp4"
-                  type="video/webm"
+          <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+            {/* Left — media */}
+            <div className="w-full h-[280px] md:h-[400px] rounded-2xl overflow-hidden">
+              {active === 0 ? (
+                <video
+                  autoPlay
+                  muted
+                  playsInline
+                  loop
+                  poster="https://res.cloudinary.com/dutbzgehz/video/upload/so_0,q_auto,f_auto/v1773956215/Ranking_de_Precios_cq3mxw.jpg"
+                  className="w-full h-full object-cover rounded-2xl"
+                >
+                  <source
+                    src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_webm/v1773956215/Ranking_de_Precios_cq3mxw.mp4"
+                    type="video/webm"
+                  />
+                  <source
+                    src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_mp4/v1773956215/Ranking_de_Precios_cq3mxw.mp4"
+                    type="video/mp4"
+                  />
+                </video>
+              ) : active === 2 ? (
+                <img
+                  src={appAvkImage}
+                  alt="AvoKingdom app - Hecho para el campo"
+                  className="w-full h-full object-cover object-top rounded-2xl"
                 />
-                <source
-                  src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_mp4/v1773956215/Ranking_de_Precios_cq3mxw.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            ) : active === 2 ? (
-              <img
-                src={appAvkImage}
-                alt="AvoKingdom app - Hecho para el campo"
-                className="w-full rounded-2xl"
-              />
-            ) : active === 3 ? (
-              <video
-                autoPlay
-                muted
-                playsInline
-                loop
-                poster="https://res.cloudinary.com/dutbzgehz/video/upload/so_0,q_auto,f_auto/v1773960264/1106552_1080p_4k_1280x720_u2anok.jpg"
-                className="w-full rounded-2xl"
-              >
-                <source
-                  src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_webm/v1773960264/1106552_1080p_4k_1280x720_u2anok.mp4"
-                  type="video/webm"
-                />
-                <source
-                  src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_mp4/v1773960264/1106552_1080p_4k_1280x720_u2anok.mp4"
-                  type="video/mp4"
-                />
-              </video>
-            ) : (
-              <div className="bg-background rounded-2xl p-4 space-y-3">
-                <div className="flex gap-2 mb-4">
-                  {["Conv.", "Orgánica", "Local"].map((t) => (
-                    <span
-                      key={t}
-                      className="bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1.5 rounded-full"
+              ) : active === 3 ? (
+                <video
+                  autoPlay
+                  muted
+                  playsInline
+                  loop
+                  poster="https://res.cloudinary.com/dutbzgehz/video/upload/so_0,q_auto,f_auto/v1773960264/1106552_1080p_4k_1280x720_u2anok.jpg"
+                  className="w-full h-full object-cover rounded-2xl"
+                >
+                  <source
+                    src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_webm/v1773960264/1106552_1080p_4k_1280x720_u2anok.mp4"
+                    type="video/webm"
+                  />
+                  <source
+                    src="https://res.cloudinary.com/dutbzgehz/video/upload/q_auto,f_mp4/v1773960264/1106552_1080p_4k_1280x720_u2anok.mp4"
+                    type="video/mp4"
+                  />
+                </video>
+              ) : (
+                <div className="bg-background h-full rounded-2xl p-4 space-y-3 overflow-auto">
+                  <div className="flex gap-2 mb-4">
+                    {["Conv.", "Orgánica", "Local"].map((t) => (
+                      <span
+                        key={t}
+                        className="bg-primary/10 text-primary text-xs font-heading font-semibold px-3 py-1.5 rounded-full"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  {f.mockupRows.map((e, i) => (
+                    <div
+                      key={`${active}-${i}`}
+                      className="flex items-center justify-between p-3 rounded-lg bg-card border border-border"
                     >
-                      {t}
-                    </span>
+                      <div>
+                        <p className="text-sm font-medium text-foreground">{e.name}</p>
+                        <p className="text-xs text-muted-foreground">{e.gram}</p>
+                      </div>
+                      <span className="text-primary font-heading font-bold">{e.price}</span>
+                    </div>
                   ))}
                 </div>
-                {f.mockupRows.map((e, i) => (
-                  <div
-                    key={`${active}-${i}`}
-                    className="flex items-center justify-between p-3 rounded-lg bg-card border border-border"
-                  >
-                    <div>
-                      <p className="text-sm font-medium text-foreground">{e.name}</p>
-                      <p className="text-xs text-muted-foreground">{e.gram}</p>
-                    </div>
-                    <span className="text-primary font-heading font-bold">{e.price}</span>
-                  </div>
-                ))}
-              </div>
-            )}
+              )}
+            </div>
 
             {/* Right — info */}
             <div>
