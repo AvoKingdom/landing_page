@@ -14,7 +14,9 @@ const Navbar = () => {
     { label: "Empacadoras", href: "#solucion" },
     { label: "Nosotros", href: "#nosotros" },
     { label: "Planes", href: "#planes" },
+    { label: "Cómo funciona", href: "#como-funciona" },
     { label: "Próximamente", href: "#futuro" },
+    { label: "Preguntas", href: "#preguntas-frecuentes" },
   ];
 
   return (

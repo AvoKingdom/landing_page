@@ -1,72 +1,73 @@
 import { useRef } from "react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScroll } from "motion/react";
+import { StackingCard, type StackingCardItem } from "@/components/ui/stacking-card";
 
-const stages = [
+const stages: StackingCardItem[] = [
   {
-    label: "ETAPA 1: BASE",
+    title: "ETAPA 1: BASE",
     badge: "✅ DISPONIBLE AHORA",
-    badgeColor: "bg-secondary/20 text-secondary",
-    desc: "Ranking de precios semanal por empacadora. 82 empacadoras en Michoacán. Filtros por gramaje y tipo de fruta.",
+    description:
+      "Ranking de precios semanal por empacadora. 82 empacadoras en Michoacán. Filtros por gramaje y tipo de fruta.",
+    image:
+      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1200&auto=format&fit=crop&q=80",
+    color: "#153822",
   },
   {
-    label: "ETAPA 2: DESARROLLO",
+    title: "ETAPA 2: DESARROLLO",
     badge: "🔄 EN DESARROLLO",
-    badgeColor: "bg-gold/20 text-gold",
-    desc: "Historial de precios. Red de productores. Identidad digital. Volumen de producción estatal. Información de mercado meta.",
+    description:
+      "Historial de precios. Red de productores. Identidad digital. Volumen de producción estatal. Información de mercado meta.",
+    image:
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&auto=format&fit=crop&q=80",
+    color: "#3d3518",
   },
   {
-    label: "ETAPA 3: MODELO",
+    title: "ETAPA 3: MODELO",
     badge: "🔜 PRÓXIMAMENTE",
-    badgeColor: "bg-muted text-muted-foreground",
-    desc: "Asistencia legal. Gestoría regulatoria. Mapa de riesgos. Recomendación de fecha ideal de venta con algoritmo inteligente.",
+    description:
+      "Asistencia legal. Gestoría regulatoria. Mapa de riesgos. Recomendación de fecha ideal de venta con algoritmo inteligente.",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80",
+    color: "#1c1c1c",
   },
   {
-    label: "ETAPA 4: ECOSISTEMA COMPLETO",
+    title: "ETAPA 4: ECOSISTEMA COMPLETO",
     badge: "🚀 VISIÓN",
-    badgeColor: "border border-muted-foreground/30 text-muted-foreground",
-    desc: "Transacciones directas comprador-productor. Servicios financieros. Cuadrillas y transporte. Créditos para mejora de instalaciones.",
+    description:
+      "Transacciones directas comprador-productor. Servicios financieros. Cuadrillas y transporte. Créditos para mejora de instalaciones.",
+    image:
+      "https://images.unsplash.com/photo-1521737711867-e3b75a0b0d6d?w=1200&auto=format&fit=crop&q=80",
+    color: "#0f2918",
   },
 ];
 
 const RoadmapSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const visible = useScrollAnimation(ref);
+  const container = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end end"],
+  });
+
+  const n = stages.length;
 
   return (
-    <section id="futuro" className="py-24 md:py-32 grain" ref={ref}>
-      <div className="container max-w-3xl">
-        <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-4 text-center">
-          El Futuro
-        </p>
-        <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-center mb-16">
-          Esto es solo el inicio.
-        </h2>
+    <section id="futuro" className="relative grain">
+      <div className="container max-w-4xl px-4 pb-10 pt-24 text-center md:pb-14 md:pt-32">
+        <p className="mb-4 font-heading text-sm font-semibold uppercase tracking-widest text-primary">El Futuro</p>
+        <h2 className="font-heading text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">Esto es solo el inicio.</h2>
+      </div>
 
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-4 md:left-6 top-0 bottom-0 w-px bg-border" />
-
-          <div className="space-y-12">
-            {stages.map((s, i) => (
-              <div
-                key={i}
-                className={`relative pl-12 md:pl-16 transition-all duration-700 ${
-                  visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: `${i * 150}ms` }}
-              >
-                {/* Dot */}
-                <div className="absolute left-2 md:left-4 top-1 w-4 h-4 rounded-full bg-primary border-4 border-background" />
-
-                <span className={`inline-block text-xs font-heading font-bold px-3 py-1 rounded-full mb-3 ${s.badgeColor}`}>
-                  {s.badge}
-                </span>
-                <h3 className="font-heading font-bold text-lg text-foreground mb-2">{s.label}</h3>
-                <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div ref={container} className="relative pb-24">
+        {stages.map((item, i) => (
+          <StackingCard
+            key={item.title}
+            i={i}
+            item={item}
+            progress={scrollYProgress}
+            range={[i * (1 / n), 1]}
+            targetScale={1 - (n - i) * 0.05}
+          />
+        ))}
       </div>
     </section>
   );

@@ -93,10 +93,10 @@ const SolutionSection = () => {
               onClick={() => setActive(i)}
               onMouseEnter={() => setTabHovered(i)}
               onMouseLeave={() => setTabHovered(null)}
-              className={`glass-card p-4 md:p-5 text-left cursor-pointer transition-all duration-300 ${
+              className={`glass-card-glow-bottom p-4 md:p-5 text-left cursor-pointer transition-all duration-300 ${
                 active === i
-                  ? "border-primary bg-primary/5 shadow-[0_0_25px_hsl(var(--primary)/0.15)]"
-                  : "hover:border-primary/30"
+                  ? "shadow-[0_8px_30px_hsl(73_100%_50%_/_0.15)] [border-bottom-color:hsl(73_100%_50%_/_0.4)]"
+                  : ""
               } ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
