@@ -1,38 +1,28 @@
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useLanguage } from "@/i18n/LanguageContext";
 
-const problems = [
-  {
-    image: "/images/Precio.webp",
-    title: "No sabes qué precio ofrece la empacadora de al lado",
-    body: "Sin información, negocias desde la debilidad. El que sabe más, siempre gana.",
-    objectPosition: "center 70%",
-  },
-  {
-    image: "/images/Mercado.webp",
-    title: "Los intermediarios conocen el mercado mejor que tú",
-    body: "Ellos tienen los datos. Tú tienes la fruta. Eso tiene que cambiar.",
-  },
-  {
-    image: "/images/Tiempo.webp",
-    title: "Cuando quieres comparar, ya es tarde",
-    body: "Los precios cambian cada semana. Decidir sin información actualizada te cuesta dinero.",
-  },
+const imageMeta = [
+  { image: "/images/Precio.webp", objectPosition: "center 70%" },
+  { image: "/images/Mercado.webp", objectPosition: "center" },
+  { image: "/images/Tiempo.webp", objectPosition: "center" },
 ];
 
 const ProblemSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const visible = useScrollAnimation(ref);
+  const { messages } = useLanguage();
+
+  const problems = useMemo(
+    () => messages.problem.cards.map((c, i) => ({ ...c, ...imageMeta[i] })),
+    [messages],
+  );
 
   return (
     <section className="py-24 md:py-32 grain" ref={ref}>
       <div className="container">
-        <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-4">
-          El Problema
-        </p>
-        <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl max-w-3xl mb-16 leading-tight">
-          El campo sabe producir. Pero el mercado lo ha tenido en la oscuridad.
-        </h2>
+        <p className="text-primary font-heading font-semibold text-sm tracking-widest uppercase mb-4">{messages.problem.kicker}</p>
+        <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl max-w-3xl mb-16 leading-tight">{messages.problem.heading}</h2>
 
         <div className="grid md:grid-cols-3 gap-6">
           {problems.map((p, i) => (
@@ -48,7 +38,7 @@ const ProblemSection = () => {
                   src={p.image}
                   alt={p.title}
                   className="w-full h-full object-cover"
-                  style={{ objectPosition: p.objectPosition || 'center' }}
+                  style={{ objectPosition: p.objectPosition || "center" }}
                 />
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-card to-transparent" />
               </div>

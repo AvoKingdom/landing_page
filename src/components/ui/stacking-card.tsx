@@ -1,74 +1,125 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { motion, useTransform, type MotionValue } from "motion/react";
+import { CheckCircle2, Clock, RefreshCw, Sparkles, type LucideIcon } from "lucide-react";
+import { BorderRotate } from "@/components/ui/animated-gradient-border";
+
+export type StageBadgeVariant = "available" | "development" | "upcoming" | "vision";
+
+const badgeIcons: Record<StageBadgeVariant, LucideIcon> = {
+  available: CheckCircle2,
+  development: RefreshCw,
+  upcoming: Clock,
+  vision: Sparkles,
+};
 
 export interface StackingCardItem {
   title: string;
-  description: string;
+  badgeLabel: string;
+  badgeVariant: StageBadgeVariant;
+  bullets: string[];
   image: string;
-  color: string;
-  badge?: string;
 }
 
 interface StackingCardProps {
   i: number;
+  total: number;
   item: StackingCardItem;
   progress: MotionValue<number>;
-  range: [number, number];
   targetScale: number;
 }
 
-export function StackingCard({ i, item, progress, range, targetScale }: StackingCardProps) {
-  const parallaxRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: parallaxRef,
-    offset: ["start end", "start start"],
-  });
+const ctaBorderGradient = {
+  primary: "#142218",
+  secondary: "#2d8a45",
+  accent: "#c4f000",
+} as const;
 
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.35, 1]);
-  const scale = useTransform(progress, range, [1, targetScale]);
+function StageBadge({ variant, label }: { variant: StageBadgeVariant; label: string }) {
+  const Icon = badgeIcons[variant];
+  return (
+    <span className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full border border-primary/45 bg-primary/5 px-4 py-1.5 font-heading text-xs font-semibold uppercase tracking-widest text-primary md:mx-0">
+      <Icon className="h-3.5 w-3.5 shrink-0 text-primary" strokeWidth={2} aria-hidden />
+      {label}
+    </span>
+  );
+}
+
+export function StackingCard({ i, total, item, progress, targetScale }: StackingCardProps) {
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  // Un solo eje de scroll (progress del contenedor): escala de apilamiento como en el diseño original
+  const scale = useTransform(progress, [i / total, 1], [1, targetScale]);
+
+  // Parallax de imagen derivado del mismo progress (evita un useScroll extra por card)
+  const imageScale = useTransform(progress, [i / total, (i + 1) / total], [1.22, 1]);
 
   return (
-    <div ref={parallaxRef} className="sticky top-0 flex h-[min(100dvh,900px)] min-h-[560px] items-center justify-center py-6 md:py-10">
+    <div
+      ref={parallaxRef}
+      className="sticky top-0 flex h-screen min-h-[560px] items-center justify-center py-6 md:min-h-[640px] md:py-10"
+    >
       <motion.div
         style={{
-          backgroundColor: item.color,
           scale,
-          top: `calc(-4vh + ${i * 22}px)`,
+          top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className="relative -top-[20%] flex h-[min(420px,72dvh)] w-[min(94%,760px)] origin-top flex-col overflow-hidden rounded-xl p-6 shadow-2xl md:-top-[25%] md:h-[450px] md:w-[70%] md:rounded-2xl md:p-10"
+        className="relative -top-[25%] flex w-full max-w-[min(94vw,760px)] origin-top justify-center md:max-w-none md:w-[70%]"
       >
-        {item.badge ? (
-          <span className="mb-3 inline-flex w-fit rounded-full border border-white/20 bg-black/20 px-3 py-1 font-heading text-[10px] font-bold uppercase tracking-wider text-white/95 md:text-xs">
-            {item.badge}
-          </span>
-        ) : null}
+        <div
+          className="pointer-events-none absolute -inset-3 -z-10 rounded-[28px] opacity-90 blur-2xl md:-inset-5 md:blur-3xl"
+          style={{
+            background:
+              "radial-gradient(ellipse 85% 60% at 50% 45%, hsl(73 100% 50% / 0.11) 0%, transparent 55%), radial-gradient(ellipse 70% 50% at 50% 100%, hsl(122 39% 49% / 0.07) 0%, transparent 50%)",
+          }}
+          aria-hidden
+        />
 
-        <h2 className="text-center font-heading text-xl font-semibold leading-tight text-white md:text-2xl">{item.title}</h2>
+        <div className="relative w-full rounded-[26px] shadow-[0_0_36px_-8px_hsl(73_100%_50%_/_0.1),0_0_56px_-14px_hsl(122_39%_49%_/_0.06)]">
+          <BorderRotate
+            className="w-full"
+            animationMode="auto-rotate"
+            animationSpeed={10}
+            borderRadius={24}
+            borderWidth={2}
+            backgroundColor="#060606"
+            gradientColors={ctaBorderGradient}
+          >
+            <div className="px-6 py-8 md:px-10 md:py-10">
+              <StageBadge variant={item.badgeVariant} label={item.badgeLabel} />
 
-        <div className="mt-4 flex min-h-0 flex-1 flex-col-reverse gap-6 md:mt-5 md:flex-row md:gap-10">
-          <div className="flex w-full flex-col md:w-[42%] md:pt-[6%]">
-            <p className="text-sm leading-relaxed text-white/90">{item.description}</p>
-            <a
-              href="#planes"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white underline decoration-white/40 underline-offset-4 transition-colors hover:text-primary hover:decoration-primary"
-            >
-              Ver más
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </a>
-          </div>
+              <h2 className="text-center font-heading text-xl font-bold leading-tight text-foreground md:text-left md:text-2xl">
+                {item.title}
+              </h2>
 
-          <div className="relative h-44 w-full shrink-0 overflow-hidden rounded-lg md:h-full md:w-[58%] md:rounded-xl">
-            <motion.div className="h-full w-full" style={{ scale: imageScale }}>
-              <img
-                src={item.image}
-                alt={item.title}
-                className="absolute inset-0 h-full w-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-            </motion.div>
-          </div>
+              <div className="mt-4 flex min-h-0 flex-1 flex-col-reverse gap-6 md:mt-5 md:flex-row md:gap-10">
+                <div className="flex w-full flex-col md:w-[42%] md:pt-[4%]">
+                  <ul className="space-y-2.5 text-left">
+                    {item.bullets.map((line) => (
+                      <li key={line} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+                        <span
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary shadow-[0_0_8px_hsl(73_100%_50%_/_0.45)]"
+                          aria-hidden
+                        />
+                        <span>{line}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="relative isolate h-44 w-full shrink-0 overflow-hidden rounded-xl border border-border/60 md:h-72 md:w-[58%] md:min-h-[288px]">
+                  <motion.div className="relative h-full w-full" style={{ scale: imageScale }}>
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="absolute inset-0 h-full w-full object-cover"
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </BorderRotate>
         </div>
       </motion.div>
     </div>

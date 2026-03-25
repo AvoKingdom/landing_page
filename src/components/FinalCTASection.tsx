@@ -1,11 +1,14 @@
 import { BorderRotate } from "@/components/ui/animated-gradient-border";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const FinalCTASection = () => {
+  const { messages } = useLanguage();
+  const c = messages.finalCta;
+
   return (
     <section className="py-24 md:py-32 grain">
       <div className="container">
         <div className="relative mx-auto max-w-5xl px-4">
-          {/* Resplandor hacia afuera (sutil, menos intenso que una referencia con glow fuerte) */}
           <div
             className="pointer-events-none absolute -inset-3 -z-10 rounded-[28px] opacity-90 blur-2xl md:-inset-5 md:blur-3xl"
             style={{
@@ -31,39 +34,39 @@ const FinalCTASection = () => {
             >
               <div className="px-6 py-10 text-center md:px-12 md:py-14">
                 <p className="mb-5 inline-flex rounded-full border border-primary/45 bg-primary/5 px-4 py-1.5 font-heading text-xs font-semibold uppercase tracking-widest text-primary">
-                  Comienza hoy
+                  {c.kicker}
                 </p>
 
                 <h2 className="font-heading text-3xl font-bold leading-tight text-foreground md:text-4xl lg:text-[2.75rem]">
-                  ¿Listo para{" "}
-                  <span className="text-primary">vender con mejor información</span>?
+                  {c.titleBefore}
+                  {" "}
+                  <span className="text-primary">{c.titleHighlight}</span>
+                  {c.titleAfter}
                 </h2>
 
-                <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
-                  Únete gratis y descubre precios de compra reales por empacadora, actualizados cada semana.
-                </p>
+                <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground md:text-lg">{c.sub}</p>
 
                 <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                   <a
                     href="#planes"
                     className="inline-flex w-full items-center justify-center rounded-full bg-primary px-10 py-4 font-heading text-lg font-bold text-primary-foreground shadow-md shadow-primary/25 transition-all hover:brightness-110 sm:w-auto"
                   >
-                    Únete gratis hoy
+                    {c.ctaPrimary}
                   </a>
                   <a
                     href="#planes"
                     className="inline-flex w-full items-center justify-center rounded-full border border-foreground/25 bg-transparent px-10 py-4 font-heading text-lg font-medium text-foreground transition-all hover:bg-foreground/5 sm:w-auto"
                   >
-                    Ver los planes →
+                    {c.ctaSecondary}
                   </a>
                 </div>
 
                 <div className="mt-10 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-                  <span>Sin contratos</span>
+                  <span>{c.foot1}</span>
                   <span className="text-border">·</span>
-                  <span>Actualizado cada semana</span>
+                  <span>{c.foot2}</span>
                   <span className="text-border">·</span>
-                  <span>Hecho en Michoacán 🥑</span>
+                  <span>{c.foot3}</span>
                 </div>
               </div>
             </BorderRotate>

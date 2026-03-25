@@ -98,6 +98,12 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    min-height: 100%;
+    /* No usar overflow-x hidden/clip en body: rompe position:sticky (p. ej. cards “El futuro”) */
+  }
+
+  #root {
+    min-height: 100%;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -163,5 +169,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  min-height: 100%;
+  /* scroll-behavior: smooth desactivado: con Motion + secciones largas puede sentirse menos fluido */
 }

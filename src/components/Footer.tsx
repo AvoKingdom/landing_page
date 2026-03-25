@@ -1,45 +1,11 @@
 import { Facebook, Instagram } from "lucide-react";
-
-const WHATSAPP_HREF = "https://wa.me/524432132462";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const linkMotion =
   "text-muted-foreground transition-all duration-200 hover:text-primary hover:translate-x-1 inline-block";
 
 const footerLinkClass = `text-sm ${linkMotion}`;
 const footerBarLinkClass = `text-xs ${linkMotion}`;
-
-type FooterCol = {
-  title: string;
-  links: { label: string; href: string; external?: boolean }[];
-};
-
-const cols: FooterCol[] = [
-  {
-    title: "Producto",
-    links: [
-      { label: "Empacadoras", href: "#solucion" },
-      { label: "Planes", href: "#planes" },
-      { label: "Cómo funciona", href: "#como-funciona" },
-      { label: "Próximamente", href: "#futuro" },
-      { label: "Preguntas Frecuentes", href: "#preguntas-frecuentes" },
-    ],
-  },
-  {
-    title: "Empresa",
-    links: [
-      { label: "Quiénes somos", href: "#nosotros" },
-      { label: "Misión", href: "#nosotros" },
-      { label: "Valores", href: "#nosotros" },
-    ],
-  },
-  {
-    title: "Contacto",
-    links: [
-      { label: "Avokingdom@outlook.com", href: "mailto:Avokingdom@outlook.com" },
-      { label: "WhatsApp", href: WHATSAPP_HREF, external: true },
-    ],
-  },
-];
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -50,6 +16,9 @@ function XIcon({ className }: { className?: string }) {
 }
 
 const Footer = () => {
+  const { messages } = useLanguage();
+  const cols = messages.footer.cols;
+
   return (
     <footer className="border-t border-border py-16 grain">
       <div className="container">
@@ -58,10 +27,10 @@ const Footer = () => {
             <div className="mb-3">
               <img src="/images/AVK_LOGO.webp" alt="AvoKingdom" className="h-9" />
             </div>
-            <p className="text-muted-foreground text-sm italic">La unión hace la fuerza</p>
+            <p className="text-muted-foreground text-sm italic">{messages.footer.tagline}</p>
             <div className="mt-5 flex items-center gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/avokingdom_solutions?igsh=empuMWgwazI2bjM0&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${footerLinkClass} inline-flex p-0.5 -m-0.5`}
@@ -70,7 +39,7 @@ const Footer = () => {
                 <Instagram className="h-5 w-5" strokeWidth={1.75} />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/share/1E1pKyoE9B/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${footerLinkClass} inline-flex p-0.5 -m-0.5`}
@@ -79,7 +48,7 @@ const Footer = () => {
                 <Facebook className="h-5 w-5" strokeWidth={1.75} />
               </a>
               <a
-                href="https://x.com"
+                href="https://x.com/avokingdom_s?s=21&t=heiz7JaTxmz-apmB_oaXLg"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${footerLinkClass} inline-flex p-0.5 -m-0.5`}
@@ -111,17 +80,17 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-xs text-muted-foreground">
-          <p>© 2026 AvoKingdom Solutions Corp · Todos los derechos reservados</p>
+          <p>{messages.footer.copyright}</p>
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1 sm:justify-end">
             <a href="#" className={footerBarLinkClass}>
-              Privacidad
+              {messages.footer.privacy}
             </a>
             <span className="text-border">·</span>
             <a href="#" className={footerBarLinkClass}>
-              Términos
+              {messages.footer.terms}
             </a>
             <span className="text-border">·</span>
-            <span className="text-muted-foreground">Tecnología al servicio del campo</span>
+            <span className="text-muted-foreground">{messages.footer.tech}</span>
           </div>
         </div>
       </div>

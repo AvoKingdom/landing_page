@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { messages } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -10,14 +13,16 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = [
-    { label: "Empacadoras", href: "#solucion" },
-    { label: "Nosotros", href: "#nosotros" },
-    { label: "Planes", href: "#planes" },
-    { label: "Cómo funciona", href: "#como-funciona" },
-    { label: "Próximamente", href: "#futuro" },
-    { label: "Preguntas", href: "#preguntas-frecuentes" },
-  ];
+  const links = useMemo(
+    () => [
+      { label: messages.nav.beneficios, href: "#solucion" },
+      { label: messages.nav.nosotros, href: "#nosotros" },
+      { label: messages.nav.planes, href: "#planes" },
+      { label: messages.nav.comoFunciona, href: "#como-funciona" },
+      { label: messages.nav.faq, href: "#preguntas-frecuentes" },
+    ],
+    [messages],
+  );
 
   return (
     <nav
@@ -28,12 +33,10 @@ const Navbar = () => {
       }`}
     >
       <div className="container flex items-center justify-between h-16 md:h-20">
-        {/* Logo */}
         <a href="#">
           <img src="/images/AVK_LOGO.webp" alt="AvoKingdom" className="h-9" />
         </a>
 
-        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <a
@@ -46,24 +49,24 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3">
+          <LanguageSwitcher />
+          <span className="h-4 w-px shrink-0 bg-border" aria-hidden />
           <a href="#planes" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            Iniciar Sesión
+            {messages.nav.iniciarSesion}
           </a>
           <a
             href="#planes"
             className="inline-flex items-center gap-1 bg-primary text-primary-foreground font-heading font-semibold text-sm px-5 py-2.5 rounded-full hover:brightness-110 transition-all"
           >
-            Crear cuenta <span className="ml-1">→</span>
+            {messages.nav.crearCuenta} <span className="ml-1">→</span>
           </a>
         </div>
 
-        {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="md:hidden text-foreground p-2"
-          aria-label="Menú"
+          aria-label={messages.nav.menuAria}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             {mobileOpen ? (
@@ -75,7 +78,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-xl border-t border-border px-6 py-6 space-y-4">
           {links.map((l) => (
@@ -88,19 +90,22 @@ const Navbar = () => {
               {l.label}
             </a>
           ))}
+          <div className="flex items-center gap-3 pt-2 border-t border-border">
+            <LanguageSwitcher align="start" />
+          </div>
           <a
             href="#planes"
             onClick={() => setMobileOpen(false)}
             className="block text-foreground text-lg font-medium"
           >
-            Iniciar Sesión
+            {messages.nav.iniciarSesion}
           </a>
           <a
             href="#planes"
             onClick={() => setMobileOpen(false)}
             className="inline-flex items-center gap-1 bg-primary text-primary-foreground font-heading font-semibold text-sm px-5 py-2.5 rounded-full"
           >
-            Crear cuenta →
+            {messages.nav.crearCuenta} →
           </a>
         </div>
       )}
