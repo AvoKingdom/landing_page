@@ -26,6 +26,16 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLocale = (l: Locale) => setLocaleState(l);
 
+  /** URLs absolutas para og:image / twitter:image (los crawlers suelen exigir URL completa). */
+  useEffect(() => {
+    const origin = window.location.origin;
+    const abs = (path: string) => `${origin}${path.startsWith("/") ? path : `/${path}`}`;
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage) ogImage.setAttribute("content", abs("/og-image.png"));
+    const twImage = document.querySelector('meta[name="twitter:image"]');
+    if (twImage) twImage.setAttribute("content", abs("/og-image.png"));
+  }, []);
+
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, locale);
@@ -41,6 +51,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (ogTitle) ogTitle.setAttribute("content", m.title);
     const ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc) ogDesc.setAttribute("content", m.description);
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twTitle) twTitle.setAttribute("content", m.title);
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twDesc) twDesc.setAttribute("content", m.description);
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale) ogLocale.setAttribute("content", locale === "en" ? "en_US" : "es_MX");
   }, [locale]);
 
   const value = useMemo(

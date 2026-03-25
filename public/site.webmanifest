@@ -1,0 +1,24 @@
+{
+  "name": "AvoKingdom Solutions",
+  "short_name": "AvoKingdom",
+  "description": "Tecnología al servicio del campo. Precios reales de empacadoras en Michoacán.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#142218",
+  "background_color": "#050505",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}
