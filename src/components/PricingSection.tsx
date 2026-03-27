@@ -2,6 +2,8 @@ import { useState, useRef, useMemo } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useLanguage } from "@/i18n/LanguageContext";
 
+const PLANS_HIRE_URL = "https://avokingdom.vercel.app/planes";
+
 const planLayout = [
   {
     icon: "🌱",
@@ -114,9 +116,24 @@ const PricingSection = () => {
                 ))}
               </ul>
 
-              <a href="#" className={`text-center font-heading font-semibold text-sm px-6 py-3 rounded-full transition-all ${plan.ctaStyle}`}>
-                {plan.ctaText}
-              </a>
+              {i < 2 ? (
+                <a
+                  href={PLANS_HIRE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-center font-heading font-semibold text-sm px-6 py-3 rounded-full transition-all ${plan.ctaStyle}`}
+                >
+                  {messages.pricing.ctaHire}
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  disabled
+                  className="w-full text-center font-heading font-semibold text-sm px-6 py-3 rounded-full border border-foreground/20 text-muted-foreground cursor-not-allowed opacity-70 bg-muted/40"
+                >
+                  {messages.pricing.ctaComingSoon}
+                </button>
+              )}
             </div>
           ))}
         </div>

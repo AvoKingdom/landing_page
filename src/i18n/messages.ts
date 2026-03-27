@@ -61,12 +61,13 @@ export interface SiteMessages {
     saveTwoMonths: string;
     toggleAria: string;
     footnote: string;
+    ctaHire: string;
+    ctaComingSoon: string;
     plans: {
       name: string;
       tagline: string;
       badge: string | null;
       features: string[];
-      ctaText: string;
     }[];
   };
   process: {
@@ -264,6 +265,8 @@ const es: SiteMessages = {
     saveTwoMonths: "Ahorra 2 meses",
     toggleAria: "Alternar facturación anual",
     footnote: "Todos los precios en USD. Facturación en MXN disponible. Cancela cuando quieras.",
+    ctaHire: "Contratar",
+    ctaComingSoon: "Próximamente",
     plans: [
       {
         name: "SEED",
@@ -275,7 +278,6 @@ const es: SiteMessages = {
           "Filtros básicos por gramaje",
           "Perfil básico",
         ],
-        ctaText: "Empezar gratis",
       },
       {
         name: "SPROUT",
@@ -289,7 +291,6 @@ const es: SiteMessages = {
           "Acceso prioritario a información",
           "Beneficios de alianzas",
         ],
-        ctaText: "Comenzar",
       },
       {
         name: "TREE",
@@ -304,7 +305,6 @@ const es: SiteMessages = {
           "Asistencia documental para ventas",
           "Alarmas de venta y cobro",
         ],
-        ctaText: "Comenzar",
       },
       {
         name: "GROVE",
@@ -319,7 +319,6 @@ const es: SiteMessages = {
           "Influencia estratégica en el ecosistema",
           "Visibilidad máxima y alianzas preferenciales",
         ],
-        ctaText: "Comenzar",
       },
     ],
   },
@@ -624,6 +623,8 @@ const en: SiteMessages = {
     saveTwoMonths: "Save 2 months",
     toggleAria: "Toggle annual billing",
     footnote: "All prices in USD. MXN billing available. Cancel anytime.",
+    ctaHire: "Subscribe",
+    ctaComingSoon: "Coming soon",
     plans: [
       {
         name: "SEED",
@@ -635,7 +636,6 @@ const en: SiteMessages = {
           "Basic filters by pack size",
           "Basic profile",
         ],
-        ctaText: "Start free",
       },
       {
         name: "SPROUT",
@@ -649,7 +649,6 @@ const en: SiteMessages = {
           "Priority access to information",
           "Partnership perks",
         ],
-        ctaText: "Get started",
       },
       {
         name: "TREE",
@@ -664,7 +663,6 @@ const en: SiteMessages = {
           "Document support for sales",
           "Sale and collection alerts",
         ],
-        ctaText: "Get started",
       },
       {
         name: "GROVE",
@@ -679,7 +677,6 @@ const en: SiteMessages = {
           "Strategic influence in the ecosystem",
           "Maximum visibility and preferred partnerships",
         ],
-        ctaText: "Get started",
       },
     ],
   },
